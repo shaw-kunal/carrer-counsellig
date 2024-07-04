@@ -64,7 +64,7 @@ const Navbar = () => {
           >
             {
                 linkList.map((item)=>(
-                    <li>
+                    <li key={item.title}>
               <Link href={item.link} className="block  outline-none no-underline hover:no-underline">
                 <div className="text-gray-800 font-medium  px-6 py-2 rounded-[40px] hover:text-white hover:bg-indigo-600 dark:text-gray-350 dark:hover:text-white focus:text-white text-sm lg:text-base transition-colors duration-300">
                   {item.title}
