@@ -8,6 +8,9 @@ import { Card } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import Image from "next/image";
 import { RiMemoriesFill } from "react-icons/ri";
+import "./animation.css";
+import About from "@/components/About";
+import TimeLine from "@/components/TimeLine";
 
 export default function Home() {
   return (
@@ -22,18 +25,20 @@ export default function Home() {
           data-nimg="1"
           objectFit="cover"
           className=" bg-gradient-to-b from-slate-100 to-indigo-300 absolute top-0 -z-10"
-          style={{ color: 'transparent' }}  // <-- corrected style usage
+          style={{ color: "transparent" }} // <-- corrected style usage
           src="/bg.svg"
         />
         <Navbar />
         <div className="container hero-section grid grid-rows-1 sm:grid-cols-2  p-2">
           {/* left */}
           <div className="flex  justify-center flex-col p-4 ">
-            <h1 className="text-[30px] mb-4 xl:text-[50px]  font-bold">
+            <div className="text-[30px] mb-4  xl:text-[50px]  font-bold">
               Plan Your{" "}
-              <span className="text-indigo-600">International Career</span> with
-              Us.
-            </h1>
+              <span className="text-animation ">
+                International 
+              </span>{" "}
+              Career  with Us.
+            </div>
             <p className="mb-4">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
               accusantium aspernatur doloremque ratione molestias autem
@@ -53,7 +58,7 @@ export default function Home() {
           {/* right */}
 
           <div className="hidden sm:block m-auto ">
-            <div className="relative w-[450px] h-[450px]">
+            <div className="relative w-[450px] h-[450px] ">
               <Image
                 fill
                 src={"/global.png"}
@@ -65,10 +70,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* About Us */}
+      <About />
 
-{/* flag swipper */}
-       <FlagSwipper/>
-
+      {/* flag swipper */}
+      <FlagSwipper />
 
       {/* carrer path */}
       <CarrerPath />
@@ -77,136 +83,12 @@ export default function Home() {
 
       <WhyGlobal />
 
-
-
       {/* how we can help you */}
-      <div
-        className="relative"
-        style={{
-          backgroundAttachment: "fixed",
-          backgroundPosition: "center right",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundImage:
-            'linear-gradient(to right, rgba(0,0,0,.4), rgba(0,0,0,.4)), url("/timelinebg.jpg")',
-        }}
-      >
-        <h1 className="text-center  font-medium text-[40px] py-7 text-white">
-          How Can We Help You?
-        </h1>
-        <div className="container text-white ">
-          <div className="p-4 w-full md:w-2/3 mx-auto">
-            {/* EXPERIENCE LIST ITEM */}
-            <div className="flex justify-between h-48">
-              {/* LEFT */}
-              <div className="w-1/3 ">
-                {/* JOB TITLE */}
-                <div className="bg-slate-300 p-3 font-semibold rounded-b-lg rounded-s-lg text-gray-700">
-                  Free Counselling
-                </div>
-                {/* JOB DESC */}
-                <div className="p-3 text-sm italic">
-                  We provide you with free counselling sessions which will allow
-                  you to make the best well informed choice for further studies.{" "}
-                </div>
-              </div>
-              {/* CENTER */}
-              <div className="w-1/6 flex justify-center">
-                {/* LINE */}
-                <div className="w-1 h-full bg-gray-600 rounded relative">
-                  {/* LINE CIRCLE */}
-                  <div className="absolute w-5 h-5 rounded-full ring-4 ring-indigo-600 bg-white -left-2"></div>
-                </div>
-              </div>
-              {/* RIGHT */}
-              <div className="w-1/3 "></div>
-            </div>
-            {/* EXPERIENCE LIST ITEM */}
-            <div className="flex justify-between h-48">
-              {/* LEFT */}
-              <div className="w-1/3 "></div>
-              {/* CENTER */}
-              <div className="w-1/6 flex justify-center">
-                {/* LINE */}
-                <div className="w-1 h-full bg-gray-600 rounded relative">
-                  {/* LINE CIRCLE */}
-                  <div className="absolute w-5 h-5 rounded-full ring-4 ring-indigo-400 bg-white -left-2"></div>
-                </div>
-              </div>
-              {/* RIGHT */}
-              <div className="w-1/3 ">
-                {/* JOB TITLE */}
-                <div className="bg-slate-300  p-3 font-semibold rounded-b-lg rounded-s-lg text-gray-700">
-                  Visa Application
-                </div>
-                {/* JOB DESC */}
-                <div className="p-3 text-sm italic">
-                  Our experts take you through the preparation for visa
-                  application along with the processing of required
-                  documentations
-                </div>
-              </div>
-            </div>
-            {/* EXPERIENCE LIST ITEM */}
-            <div className="flex justify-between h-48">
-              {/* LEFT */}
-              <div className="w-1/3 ">
-                {/* JOB TITLE */}
-                <div className="bg-slate-300 p-3 font-semibold rounded-b-lg rounded-s-lg text-gray-700">
-                  University Alignment
-                </div>
-                {/* JOB DESC */}
-                <div className="p-3 text-sm italic">
-                  We align your learning and academic dreams with the best
-                  University prospects, which meet all your academic needs.{" "}
-                </div>
-              </div>
-              {/* CENTER */}
-              <div className="w-1/6 flex justify-center">
-                {/* LINE */}
-                <div className="w-1 h-full bg-gray-600 rounded relative">
-                  {/* LINE CIRCLE */}
-                  <div className="absolute w-5 h-5 rounded-full ring-4 ring-indigo-500 bg-white -left-2"></div>
-                </div>
-              </div>
-              {/* RIGHT */}
-              <div className="w-1/3 "></div>
-            </div>
-            {/* EXPERIENCE LIST ITEM */}
-            <div className="flex justify-between h-48">
-              {/* LEFT */}
-              <div className="w-1/3 "></div>
-              {/* CENTER */}
-              <div className="w-1/6 flex justify-center">
-                {/* LINE */}
-                <div className="w-1 h-full bg-gray-600 rounded relative">
-                  {/* LINE CIRCLE */}
-                  <div className="absolute w-5 h-5 rounded-full ring-4 ring-indigo-400 bg-white -left-2"></div>
-                </div>
-              </div>
-              {/* RIGHT */}
-              <div className="w-1/3 ">
-                {/* JOB TITLE */}
-                <div className="bg-slate-300  p-3 font-semibold rounded-b-lg rounded-s-lg text-gray-700">
-                  Pre-Departure Orientation
-                </div>
-                {/* JOB DESC */}
-                <div className="p-3 text-sm italic">
-                  Before your departure, we provide you with the much needed
-                  guidance regarding your next academic destination.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-        {/* contact form */}
-        <ContactForm/>
-
-
-        {/* footer */}
-        <Footer/>
+      <TimeLine />
+      {/* contact form */}
+      <ContactForm />
+      {/* footer */}
+      <Footer />
     </main>
   );
 }
@@ -240,26 +122,30 @@ const whyGloabalData = [
 
 const WhyGlobal = () => {
   return (
-    <section className=" bg-indigo-50">
+    <section className=" bg-indigo-50 py-10 ">
       <div className="container grid grid-cols-none  lg:grid-cols-[1fr_2fr]  mb-[50px] py-10 px-2 gap-4">
         <div className="">
-          <h2 className="font-title mb-3">Why study abroad</h2>
+          <h2 className="font-title mb-3 text-xs">What Service We Provide-</h2>
           <p className="text-sm text-slate-700">
             The world is a global village with endless opportunities for
             students. Studying abroad is now essential in higher education.
             Here’s why you should consider it.
           </p>
-          <div className=" mx-auto  mt-5 dotted-background w-[200px] h-[200px] ">
-          </div>
+          <div className=" mx-auto  mt-5 dotted-background w-[200px] h-[200px] "></div>
         </div>
         <div className="grid grid-cols-none lg:grid-cols-2 grid-rows-2 gap-2 ">
           {whyGloabalData.map((item) => (
-            <Card key={item.id} className="p-2 lg:p-4 bg-transparent shadow-none border-none hover:border hover:shadow-sm hover:bg-card" >
+            <Card
+              key={item.id}
+              className="p-2 cursor-pointer mb-4 lg:p-4 bg-transparent shadow-none border-none hover:border hover:shadow-sm hover:bg-card"
+            >
               <div className="icon-box bg-indigo-500 cursor-pointer text-white shadow-white">
                 <item.icon fontSize={30} />
               </div>
               <h2 className="font-semibold capitalize my-2">{item.title}</h2>
-              <span className="text-sm text-gray-600 font-medium">{item.desc}</span>
+              <span className="text-sm text-gray-600 font-medium">
+                {item.desc}
+              </span>
             </Card>
           ))}
         </div>
@@ -267,6 +153,3 @@ const WhyGlobal = () => {
     </section>
   );
 };
-
-
-

@@ -122,4 +122,52 @@
       background-color: white;
       background-size: 20px 20px;
     }
+    .hero-title {
+      filter: hue-rotate(150deg) brightness(2) contrast(1.5);
+      animation: hue-rotation 8s infinite;
+
+    }
+    .bg-about-gradient{
+      background: linear-gradient(transparent,#0000002a);
+    }
+    .text-animation{
+      color: transparent;
+      position: relative;
+      -webkit-text-stroke: 1px  #4338ca;
+     cursor: pointer;
+    }
+    .text-animation::after{
+      @apply text-indigo-700;
+      content: "International";
+      position: absolute;
+      left: 0;
+      /* bottom: -4px; */
+      width: 0px;
+      text-wrap: nowrap;
+      overflow: hidden;
+    }
+    .text-animation::after{
+      animation:  moveText 8s infinite;
+    }
+    @keyframes moveText {
+      from{
+        width: 0;
+      }
+      50%{
+        width: 100%;
+
+      }
+      to{
+        width: 0;
+      }
+    }
+    @keyframes hue-rotation {
+      from {
+        filter: hue-rotate(0deg);
+      }
+      to {
+        filter: hue-rotate(360deg);
+      }
+    }
+
   }

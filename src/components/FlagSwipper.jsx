@@ -29,7 +29,7 @@ const topStudyAbroadCountries = [
   },
   {
     title: "France",
-    image: "/framce.webp",
+    image: "/france.webp",
   },
   {
     title: "Netherlands",
@@ -43,7 +43,9 @@ const topStudyAbroadCountries = [
 
 export const FlagSwipper = () => {
   return (
-    <div className="container flex gap-2 relative mt-20">
+    <div className="container my-20 ">
+  <h2 className="mb-10 text-center font-bold text-slate-900 text-[30px] lg:text-[40px] ">Your Next Step Toward Global Learning</h2>
+    <div className="flex gap-2 relative ">
       <Swiper
         slidesPerView={5}
         autoplay={true}
@@ -62,18 +64,18 @@ export const FlagSwipper = () => {
         {topStudyAbroadCountries.map((item, i) => (
           <SwiperSlide key={item.title}>
             <div
-              className={`flex items-center justify-center gap-2 h-[80px]   border rounded-lg  transition-all ease-in-out `}
+              className={`flex items-center justify-center gap-2 h-[80px]   border-0 md:border rounded-lg  transition-all ease-in-out `}
             >
-              <div className="w-10 h-10   text-white relative">
+              <div className="w-20 h-20 md:w-14  md:h-14  text-white relative">
                 <Image
                   fill
-                  className={` rounded-full  brightness-125 bg-white	 `}
+                  className={` rounded-md  md:rounded-full  brightness-125 bg-white	 `}
                   src={item.image}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   alt={item.title}
                 />
               </div>
-              <span className={` text-md lg:text-lg  text-slate-500 `}>
+              <span className={` text-md lg:text-lg  hidden md:block  text-slate-500 `}>
                 {" "}
                 {item.title}
               </span>
@@ -81,6 +83,7 @@ export const FlagSwipper = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+    </div>
     </div>
   );
 };
