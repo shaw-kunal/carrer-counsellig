@@ -1,6 +1,8 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import Logo from './Logo';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -25,24 +27,19 @@ const Navbar = () => {
         title:"Services",
         link:"#services"
     },
-    
-    {
-        title:"Review",
-        link:"#Review"
-    },
-    {
+       {
         title:"Contact",
         link:"#contact"
     },
    ]
   return (
-    <nav className='container'>
+    <nav className='container px-2 md:px-4 pt-2'>
       <div className={`2xl:max-w-7xl mx-auto px-3 lg:py-3  pt-2`}>
-        <div className="flex flex-wrap items-center justify-between">
-          <div className="flex-shrink-0 flex items-center mr-10 lg:mr-14">
-            <Link href="/" aria-label="Study abroad">
-              Logo
-            </Link>
+        <div className="flex flex-wrap gap-2 items-center justify-between">
+          <div className="flex-shrink-0 flex items-center   lg:mr-14">
+        <div>
+        <Logo/>
+        </div>
           </div>
           <button
             type="button"

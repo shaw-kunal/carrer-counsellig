@@ -43,7 +43,7 @@ const topStudyAbroadCountries = [
 
 export const FlagSwipper = () => {
   return (
-    <div className="container my-20 ">
+    <div className="container px-2 sm:px-4 my-20 ">
   <h2 className="mb-10 text-center font-bold text-slate-900 text-[30px] lg:text-[40px] ">Your Next Step Toward Global Learning</h2>
     <div className="flex gap-2 relative ">
       <Swiper
@@ -64,7 +64,7 @@ export const FlagSwipper = () => {
         {topStudyAbroadCountries.map((item, i) => (
           <SwiperSlide key={item.title}>
             <div
-              className={`flex items-center justify-center gap-2 h-[80px]   border-0 md:border rounded-lg  transition-all ease-in-out `}
+              className={`flex items-center justify-center gap-2 h-[80px]   border-0 md:border rounded-lg  transition-all ease-in-out bg-whitec `}
             >
               <div className="w-20 h-20 md:w-14  md:h-14  text-white relative">
                 <Image

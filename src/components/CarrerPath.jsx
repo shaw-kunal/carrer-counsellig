@@ -1,47 +1,52 @@
-import React from "react";
+import {
+  FaBriefcase,
+  FaChalkboardTeacher,
+  FaGlobe,
+  FaGraduationCap,
+  FaLightbulb,
+} from "react-icons/fa";
+import { FaGoogleScholar } from "react-icons/fa6";
+import { MdOutlineCastForEducation } from "react-icons/md";
 import { Card, CardFooter } from "./ui/card";
-import { CiGlobe } from "react-icons/ci";
-import { FaGlobe, FaGlobeAmericas, FaXbox } from "react-icons/fa";
 
 const CareerPaths = [
   {
     text: "Job Opportunity",
     backIcon: FaGlobe,
-    frontIcon: FaGlobeAmericas,
+    frontIcon: FaBriefcase,
   },
   {
-    text: "Job Opportunity",
-    backIcon: CiGlobe,
-    frontIcon: FaGlobeAmericas,
+    text: "Career Guidance",
+    backIcon: FaLightbulb,
+    frontIcon: FaBriefcase,
   },
   {
-    text: "Job Opportunity",
-    backIcon: CiGlobe,
-    frontIcon: FaXbox,
+    text: "Educational Consulting",
+    backIcon: MdOutlineCastForEducation,
+    frontIcon: FaBriefcase,
   },
   {
-    text: "Job Opportunity",
-    backIcon: CiGlobe,
-    frontIcon: FaXbox,
+    text: "Internship",
+    backIcon: FaGraduationCap,
+    frontIcon: FaBriefcase,
   },
   {
-    text: "Job Opportunity",
-    backIcon: CiGlobe,
-    frontIcon: FaXbox,
+    text: "Scholarships",
+    backIcon: FaGoogleScholar,
+    frontIcon: FaBriefcase,
   },
   {
-    text: "Job Opportunity",
-    backIcon: CiGlobe,
-    frontIcon: FaXbox,
+    text: "Success Rate",
+    backIcon: FaChalkboardTeacher,
+    frontIcon: FaBriefcase,
   },
 ];
 
 const CareerPath = () => {
   return (
-    <div className="container my-24">
+    <div className="container px-2 sm:px-4 my-24">
       <h1 className="my-4 mb-12 text-center font-medium  text-[30px] lg:text-[40px] text-black">
-        {" "}
-        Choose Your{" "}
+        Choose Your
         <span className="font-bold bg-gradient-to-t from-blue-800  via-green-600 to-indigo-100 inline-block text-transparent bg-clip-text ">
           Career Path
         </span>
