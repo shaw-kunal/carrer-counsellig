@@ -8,15 +8,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import {ArrowLeft, ArrowRight} from 'lucide-react';
 import Image from 'next/image';
-import { useState } from 'react';
-import { toast } from 'sonner';
-import { Button } from './ui/button';
-import { Checkbox } from './ui/checkbox';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
-import { ScrollArea } from './ui/scroll-area';
+import {useState} from 'react';
+import {toast} from 'sonner';
+import {Button} from './ui/button';
+import {Checkbox} from './ui/checkbox';
+import {Input} from './ui/input';
+import {Label} from './ui/label';
+import {ScrollArea} from './ui/scroll-area';
+import {useRef} from 'react';
+import emailjs from '@emailjs/browser';
+import {useEffect} from 'react';
 
 const topStudyAbroadCountries = [
   {
@@ -62,54 +65,54 @@ const topStudyAbroadCountries = [
 ];
 
 const criteria = [
-  { id: 'reputation', label: 'Institution Prestige' },
-  { id: 'research', label: 'Research Opportunities' },
-  { id: 'value_for_money', label: 'Cost Efficiency' },
-  { id: 'program_curriculum', label: 'Course Content' },
-  { id: 'international_student_community', label: 'Global Student Network' },
-  { id: 'learning', label: 'Educational Quality' },
-  { id: 'placements', label: 'Career Placement Support' },
+  {id: 'reputation', label: 'Institution Prestige'},
+  {id: 'research', label: 'Research Opportunities'},
+  {id: 'value_for_money', label: 'Cost Efficiency'},
+  {id: 'program_curriculum', label: 'Course Content'},
+  {id: 'international_student_community', label: 'Global Student Network'},
+  {id: 'learning', label: 'Educational Quality'},
+  {id: 'placements', label: 'Career Placement Support'},
 ];
 
 const preferedCourses = [
-  { id: 1, title: 'Accounting' },
-  { id: 2, title: 'Aeronautical Engineering' },
-  { id: 3, title: 'Agriculture' },
-  { id: 4, title: 'Analytics' },
-  { id: 5, title: 'Biomedical Engineering' },
-  { id: 6, title: 'Business Administration' },
-  { id: 7, title: 'Chemical Engineering' },
-  { id: 8, title: 'Civil Engineering' },
-  { id: 9, title: 'Computer Engineering' },
-  { id: 10, title: 'Economics' },
-  { id: 11, title: 'Education and Leadership' },
-  { id: 12, title: 'Engineering Sciences' },
-  { id: 13, title: 'Environmental Engineering' },
-  { id: 14, title: 'Finance' },
-  { id: 15, title: 'Geology' },
-  { id: 16, title: 'Health Care Management' },
-  { id: 17, title: 'Human Resources' },
-  { id: 18, title: 'Industrial and Manufacturing Engineering' },
-  { id: 19, title: 'Marketing' },
-  { id: 20, title: 'Mass Communication' },
-  { id: 21, title: 'Mathematics' },
-  { id: 22, title: 'Public Administration' },
-  { id: 23, title: 'Supply Chain and Logistics' },
-  { id: 24, title: 'MBA (Master of Business Administration)' },
-  { id: 25, title: 'MSc (Master of Science)' },
-  { id: 26, title: 'MFA (Master of Fine Arts)' },
-  { id: 27, title: 'MA (Master of Arts)' },
-  { id: 28, title: 'MEng (Master of Engineering)' },
-  { id: 29, title: 'MD (Doctor of Medicine)' },
-  { id: 30, title: 'JD (Juris Doctor)' },
-  { id: 31, title: 'PhD (Doctor of Philosophy)' },
-  { id: 32, title: 'MPhil (Master of Philosophy)' },
-  { id: 33, title: 'MHA (Master of Health Administration)' },
-  { id: 34, title: 'MPA (Master of Public Administration)' },
-  { id: 35, title: 'Other' },
+  {id: 1, title: 'Accounting'},
+  {id: 2, title: 'Aeronautical Engineering'},
+  {id: 3, title: 'Agriculture'},
+  {id: 4, title: 'Analytics'},
+  {id: 5, title: 'Biomedical Engineering'},
+  {id: 6, title: 'Business Administration'},
+  {id: 7, title: 'Chemical Engineering'},
+  {id: 8, title: 'Civil Engineering'},
+  {id: 9, title: 'Computer Engineering'},
+  {id: 10, title: 'Economics'},
+  {id: 11, title: 'Education and Leadership'},
+  {id: 12, title: 'Engineering Sciences'},
+  {id: 13, title: 'Environmental Engineering'},
+  {id: 14, title: 'Finance'},
+  {id: 15, title: 'Geology'},
+  {id: 16, title: 'Health Care Management'},
+  {id: 17, title: 'Human Resources'},
+  {id: 18, title: 'Industrial and Manufacturing Engineering'},
+  {id: 19, title: 'Marketing'},
+  {id: 20, title: 'Mass Communication'},
+  {id: 21, title: 'Mathematics'},
+  {id: 22, title: 'Public Administration'},
+  {id: 23, title: 'Supply Chain and Logistics'},
+  {id: 24, title: 'MBA (Master of Business Administration)'},
+  {id: 25, title: 'MSc (Master of Science)'},
+  {id: 26, title: 'MFA (Master of Fine Arts)'},
+  {id: 27, title: 'MA (Master of Arts)'},
+  {id: 28, title: 'MEng (Master of Engineering)'},
+  {id: 29, title: 'MD (Doctor of Medicine)'},
+  {id: 30, title: 'JD (Juris Doctor)'},
+  {id: 31, title: 'PhD (Doctor of Philosophy)'},
+  {id: 32, title: 'MPhil (Master of Philosophy)'},
+  {id: 33, title: 'MHA (Master of Health Administration)'},
+  {id: 34, title: 'MPA (Master of Public Administration)'},
+  {id: 35, title: 'Other'},
 ];
 
-const EnquiryForm = ({ setClose }) => {
+const EnquiryForm = ({setClose}) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [noOfPage, setNoPage] = useState(4);
   const [userInfo, setUserInfo] = useState({
@@ -123,11 +126,13 @@ const EnquiryForm = ({ setClose }) => {
     specification: [],
     factor: [],
   });
-  const [message,setMessage] = useState('')
+  const [message, setMessage] = useState('this is messae');
   const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const [sendEmail, setSendEmail] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const formRef = useRef();
+  const handleChange = e => {
+    const {name, value} = e.target;
     setUserInfo({
       ...userInfo,
       [name]: value,
@@ -181,7 +186,7 @@ const EnquiryForm = ({ setClose }) => {
       newErrors.factor = 'Please select atleast two preferences';
     }
   };
-  const handleNext = (e) => {
+  const handleNext = e => {
     e.preventDefault();
     let newErrors = {};
     if (currentPage === 0) newErrors = validateFirstPage();
@@ -192,7 +197,7 @@ const EnquiryForm = ({ setClose }) => {
       setCurrentPage(currentPage + 1);
     } else {
       setErrors(newErrors);
-      Object.values(newErrors).forEach((error) => toast.error(error));
+      Object.values(newErrors).forEach(error => toast.error(error));
     }
   };
 
@@ -200,16 +205,72 @@ const EnquiryForm = ({ setClose }) => {
     setCurrentPage(currentPage - 1);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     // Handle form submission
-    toast.success('Thank You for Contact Us.');
-    setClose(false);
-    console.log(userInfo);
+
+    const formattedMessage = `
+      We have just received a new user submission through our website. Below are the details provided by the user:
+
+      - **First Name: ${userInfo.firstName}
+
+      - **Last Name: ${userInfo.lastName}
+
+      - **Phone Number: ${userInfo.phoneNo}
+
+      - **Email: ${userInfo.email}
+
+      - **Age: ${userInfo.age}
+
+      - **Highest Degree: ${userInfo.highestDegree}
+
+      - **Study Country: ${userInfo.studyCountry.map(item => item.title).join(', ')}
+
+      - **Specification: ${userInfo.specification.map(item => item.title).join(', ')}
+
+      - **Factor: ${userInfo.factor.map(item => item.label).join(', ')}
+
+      We appreciate you taking the time to review this submission. If you need any additional information or have any questions, please feel free to reach out to them.
+    `;
+
+    setMessage(formattedMessage);
+    setSendEmail(true);
   };
+
+  useEffect(() => {
+    if (sendEmail && message) {
+      setLoading(true);
+      emailjs
+        .sendForm(
+          process.env.NEXT_PUBLIC_SERVICE_ID,
+          process.env.NEXT_PUBLIC_TEMPLATE_ID,
+          formRef.current,
+          {
+            publicKey: process.env.NEXT_PUBLIC_PUBLIC_KEY,
+          },
+        )
+        .then(
+          () => {
+            toast.success('Thank You for Contact Us.');
+            setClose(false);
+          },
+          error => {
+            console.log(error);
+            toast.error('Server is busy, please try again later');
+          },
+        )
+        .catch(() => {
+          setLoading(false);
+        });
+      setSendEmail(false);
+    }
+  }, [sendEmail, message]);
+
   return (
     <div className="max-w-md mx-auto p-2 md:p-4 rounded-md border h-[85%] overflow-auto">
-      <form className="flex flex-col justify-between h-full w-full">
+      <form
+        ref={formRef}
+        className="flex flex-col justify-between h-full w-full">
         <div className="flex-1">
           {currentPage === 0 && (
             <div>
@@ -284,10 +345,9 @@ const EnquiryForm = ({ setClose }) => {
                   Highest Degree:
                 </Label>
                 <Select
-                  onValueChange={(value) =>
-                    setUserInfo({ ...userInfo, highestDegree: value })
-                  }
-                >
+                  onValueChange={value =>
+                    setUserInfo({...userInfo, highestDegree: value})
+                  }>
                   <SelectTrigger className="w-full">
                     <SelectValue placeholder="Select your highest qualifications" />
                   </SelectTrigger>
@@ -320,33 +380,32 @@ const EnquiryForm = ({ setClose }) => {
               </h3>
 
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 my-2 md:my-4">
-                {topStudyAbroadCountries.map((item) => (
+                {topStudyAbroadCountries.map(item => (
                   <div
                     key={item.id}
                     className={`w-full border rounded-md p-3 flex flex-col relative cursor-pointer  ${
                       userInfo.studyCountry.includes(item)
                         ? 'border-foreground/50'
                         : ''
-                    }`}
-                  >
+                    }`}>
                     <div className="absolute top-2 right-2">
                       <Checkbox
                         id={item.id}
                         value={item.id}
                         checked={userInfo.studyCountry.includes(item)}
                         className="w-4 h-4 xl:w-5 xl:h-5 text-slate-600"
-                        onCheckedChange={(value) => {
+                        onCheckedChange={value => {
                           if (value) {
                             //means include item in selected countrye
-                            setUserInfo((prev) => ({
+                            setUserInfo(prev => ({
                               ...prev,
                               studyCountry: [...prev.studyCountry, item],
                             }));
                           } else {
                             const preferCountry = userInfo.studyCountry.filter(
-                              (country) => country.id !== item.id
+                              country => country.id !== item.id,
                             );
-                            setUserInfo((prev) => ({
+                            setUserInfo(prev => ({
                               ...prev,
                               studyCountry: preferCountry,
                             }));
@@ -357,8 +416,7 @@ const EnquiryForm = ({ setClose }) => {
                     </div>
                     <label
                       htmlFor={item.id}
-                      className="flex gap-2 flex-col items-center"
-                    >
+                      className="flex gap-2 flex-col items-center">
                       <div className="relative w-14 h-10 shadow-lg">
                         <Image
                           fill
@@ -382,33 +440,32 @@ const EnquiryForm = ({ setClose }) => {
               </h3>
               <ScrollArea className="h-[400px] md:h-[400px] my-1 md:my-2">
                 <div className="flex flex-wrap mt-5">
-                  {preferedCourses.map((item) => (
+                  {preferedCourses.map(item => (
                     <div
                       key={item.id}
                       className={`w-full border rounded-md flex flex-col relative mx-3 mb-4 p-px ${
-                        userInfo.factor.some((course) => course.id === item.id)
+                        userInfo.factor.some(course => course.id === item.id)
                           ? 'border-foreground/10'
                           : ''
-                      }`}
-                    >
+                      }`}>
                       <div className="absolute top-2 right-2">
                         <Checkbox
                           id={item.id}
                           checked={userInfo.specification.some(
-                            (spec) => spec.id === item.id
+                            spec => spec.id === item.id,
                           )}
                           className="w-4 h-4 xl:w-5 xl:h-5 text-slate-600"
-                          onCheckedChange={(value) => {
+                          onCheckedChange={value => {
                             if (value) {
-                              setUserInfo((prev) => ({
+                              setUserInfo(prev => ({
                                 ...prev,
                                 specification: [...prev.specification, item],
                               }));
                             } else {
                               const spec = userInfo.specification.filter(
-                                (spec) => spec.id !== item.id
+                                spec => spec.id !== item.id,
                               );
-                              setUserInfo((prev) => ({
+                              setUserInfo(prev => ({
                                 ...prev,
                                 specification: spec,
                               }));
@@ -418,8 +475,7 @@ const EnquiryForm = ({ setClose }) => {
                       </div>
                       <label
                         htmlFor={item.id}
-                        className={`p-2 rounded-sm cursor-pointer text-primary`}
-                      >
+                        className={`p-2 rounded-sm cursor-pointer text-primary`}>
                         {item.title}
                       </label>
                     </div>
@@ -436,33 +492,32 @@ const EnquiryForm = ({ setClose }) => {
               </h3>
               <div>
                 <div className="flex flex-wrap mt-5 ">
-                  {criteria.map((item) => (
+                  {criteria.map(item => (
                     <div
                       key={item.id}
                       className={`w-fix border rounded-md flex flex-col relative mx-3 lg:mx-3 mb-2 lg:mb-4 p-px ${
-                        userInfo.factor.some((factor) => factor.id === item.id)
+                        userInfo.factor.some(factor => factor.id === item.id)
                           ? 'border-foreground/10'
                           : ''
-                      }`}
-                    >
+                      }`}>
                       <div className="absolute top-3 right-2 hidden">
                         <Checkbox
                           id={item.id}
                           checked={userInfo.factor.some(
-                            (factor) => factor.id === item.id
+                            factor => factor.id === item.id,
                           )}
                           className="w-4 h-4 xl:w-5 xl:h-5 text-slate-600"
-                          onCheckedChange={(value) => {
+                          onCheckedChange={value => {
                             if (value) {
-                              setUserInfo((prev) => ({
+                              setUserInfo(prev => ({
                                 ...prev,
                                 factor: [...prev.factor, item],
                               }));
                             } else {
                               const factor = userInfo.factor.filter(
-                                (factor) => factor.id !== item.id
+                                factor => factor.id !== item.id,
                               );
-                              setUserInfo((prev) => ({
+                              setUserInfo(prev => ({
                                 ...prev,
                                 factor: factor,
                               }));
@@ -475,13 +530,10 @@ const EnquiryForm = ({ setClose }) => {
                         className={`
                         p-2 rounded-sm cursor-pointer text-primary 
                         ${
-                          userInfo.factor.some(
-                            (factor) => factor.id === item.id
-                          )
+                          userInfo.factor.some(factor => factor.id === item.id)
                             ? 'bg-primary text-white'
                             : 'bg-transparent text-primary'
-                        }`}
-                      >
+                        }`}>
                         {item.label}
                       </label>
                     </div>
@@ -496,16 +548,15 @@ const EnquiryForm = ({ setClose }) => {
             type="button"
             onClick={handlePrevious}
             disabled={currentPage === 0}
-            className="gap-3"
-          >
+            className="gap-3">
             <ArrowLeft /> Previous
           </Button>
           {noOfPage - 1 === currentPage ? (
             <Button
               variant="outline"
               className="hover:bg-foreground hover:text-white"
-              onClick={(e) => handleSubmit(e)}
-            >
+              onClick={e => handleSubmit(e)}
+              disabled={loading}>
               Submit
             </Button>
           ) : (
@@ -514,8 +565,7 @@ const EnquiryForm = ({ setClose }) => {
             </Button>
           )}
         </div>
-        <textarea name='user_email' value={message} className='hidden'/>
-
+        <textarea name="message" value={message} className="hidden" />
       </form>
     </div>
   );
