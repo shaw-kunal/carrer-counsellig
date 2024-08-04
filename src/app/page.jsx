@@ -1,22 +1,35 @@
-import About from "@/components/About";
-import CarrerPath from "@/components/CarrerPath";
-import ContactForm from "@/components/Contact";
-import { FlagSwipper } from "@/components/FlagSwipper";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
-import Services from "@/components/Services";
-import TimeLine from "@/components/TimeLine";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import Image from "next/image";
-import { FaLightbulb } from "react-icons/fa";
-import { MdCastForEducation } from "react-icons/md";
-import { RiIndentIncrease, RiMemoriesFill } from "react-icons/ri";
-import "./animation.css";
-import { Toaster } from "sonner";
-import Link from "next/link";
+'use client';
+import About from '@/components/About';
+import Faq from '@/components/Faq';
+import { FlagSwipper } from '@/components/FlagSwipper';
+import Footer from '@/components/Footer';
+import Navbar from '@/components/Navbar';
+import Reviews from '@/components/Reviews';
+import ScheduleMeeting from '@/components/ScheduleMeeting';
+import Services from '@/components/Services';
+import StatsCounter from '@/components/StatsCounter';
+import TimeLine from '@/components/TimeLine';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
+import { FaLightbulb } from 'react-icons/fa';
+import { MdCastForEducation } from 'react-icons/md';
+import { RiIndentIncrease, RiMemoriesFill } from 'react-icons/ri';
+import { Toaster } from 'sonner';
+import './animation.css';
+import { ceveat, roboto } from '@/app/utils/font';
 
 export default function Home() {
+  const [openSheet, setOpenSheet] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setOpenSheet(true);
+    }, 20000);
+  }, []);
+
   return (
     <main className="">
       <Toaster richColors />
@@ -31,7 +44,7 @@ export default function Home() {
           data-nimg="1"
           objectFit="cover"
           className=" bg-gradient-to-b from-slate-100 to-indigo-300 absolute top-0 -z-10"
-          style={{ color: "transparent" }} // <-- corrected style usage
+          style={{ color: 'transparent' }} // <-- corrected style usage
           src="/bg.svg"
         />
         <Navbar />
@@ -39,18 +52,19 @@ export default function Home() {
           {/* left */}
           <div className="flex  justify-center flex-col p-4 ">
             <div className="text-[30px] mb-4  xl:text-[50px]  font-bold">
-              Plan Your <span className="text-animation ">International</span>{" "}
+              Plan Your <span className="text-animation ">International</span>{' '}
               Career with Us.
             </div>
-            <p className="mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta
-              accusantium aspernatur doloremque ratione molestias autem
-              voluptates aliquam animi, officia odit. Eos similique fugit hic a
-              asperiores eligendi quis, quos nulla?
+            <p className={`mb-4 text-md text-foreground`}>
+              If you have dreamt about{' '}
+              <span className="font-semibold">GLOBAL</span> careers but are yet
+              to finalize options for your International Alma Mater, then{' '}
+              <span className="font-semibold"> HIGHRISE EDUV</span> is your one
+              stop counsellor for all your worries.
             </p>
             <div className="flex gap-4 my-2">
-              <Button className="bg-indigo-600 hover:shadow-md  hover:bg-indigo-700">
-                Start From Here
+              <Button onClick={() => setOpenSheet(true)}>
+                Schedule A Call
               </Button>
               <Button className="bg-white shadow-sm text-indigo-600 hover:bg-white">
                 <Link href="/#services">Learn More</Link>
@@ -64,7 +78,7 @@ export default function Home() {
             <div className="relative w-[450px] h-[450px] ">
               <Image
                 fill
-                src={"/global.png"}
+                src={'/global.png'}
                 objectFit="cover"
                 alt="Study-abroad"
               />
@@ -82,47 +96,58 @@ export default function Home() {
       {/* services */}
       <Services />
 
-      {/* carrer path */}
-      <CarrerPath />
+      {/*student total */}
+      <StatsCounter />
+
+      {/* review  */}
+      <Reviews />
 
       {/* why go global */}
-
       <WhyGlobal />
 
       {/* how we can help you */}
       <TimeLine />
+
+      {/* FAQ */}
+      <Faq />
+
       {/* contact form */}
-      <ContactForm />
+      {/* <ContactForm /> */}
+
       {/* footer */}
       <Footer />
+      <ScheduleMeeting
+        open={openSheet}
+        setClose={() => setOpenSheet(false)}
+        title="Schedule A Call"
+      />
     </main>
   );
 }
-
-const whyGloabalData = [
+const whyGlobalData = [
   {
     id: 1,
     icon: RiMemoriesFill,
-    title: "create a lifetime Memories",
-    desc: "With new landscapes comes an opportunity for you to create new and exciting opportunities which will allow you to create a lifetime of memories",
+    title: 'Create Lasting Memories',
+    desc: 'Exploring new landscapes provides opportunities to create exciting experiences that result in lifelong memories.',
   },
   {
     id: 2,
     icon: FaLightbulb,
-    title: "Opportunities for a Global Exposure",
-    desc: "Get to develop a unique exposure of the world, and learn all the latest trends in academics, career and the technological fields.",
+    title: 'Opportunities for Global Exposure',
+    desc: 'Develop a unique perspective on the world and stay updated with the latest trends in academics, careers, and technology.',
   },
   {
     id: 3,
     icon: MdCastForEducation,
-    title: "Gain A Global Perspective",
-    desc: "Studying abroad will allow you to sharpen your mind, and shape your way of seeing the world with a unique ability to communicate and appreciate the world’s varieties..",
+    title: 'Gain a Global Perspective',
+    desc: "Studying abroad sharpens your mind and enhances your ability to understand and appreciate the world's diversity.",
   },
   {
     id: 4,
     icon: RiIndentIncrease,
-    title: "Increase Your Chances of Employment",
-    desc: "Stand on a career vantage point with unique skillsets and training which puts in the sight of employers around the world.",
+    title: 'Boost Your Employment Prospects',
+    desc: 'Gain unique skills and training that make you more attractive to employers worldwide.',
   },
 ];
 
@@ -131,22 +156,27 @@ const WhyGlobal = () => {
     <section className=" bg-indigo-50 py-10 ">
       <div className="container grid grid-cols-none  lg:grid-cols-[1fr_2fr]  mb-[50px] py-10 px-2 gap-4">
         <div className="">
-          <h2 className="font-title mb-3 text-xs">Why Go Global-</h2>
+          <h2 className={`font-title mb-3 text-xs ${ceveat}`}>
+            Why Go Global-
+          </h2>
           <p className="text-sm text-slate-700">
-            The world is a global village with endless opportunities for
-            students. Studying abroad is now essential in higher education.
-            Here’s why you should consider it.
+            In today&apos;s interconnected world, endless opportunities await
+            students. Studying abroad has become a vital component of higher
+            education. Here’s why you should consider it.
           </p>
           <div className=" mx-auto  mt-5 dotted-background w-[200px] h-[200px] "></div>
         </div>
         <div className="grid grid-cols-none lg:grid-cols-2 grid-rows-2 gap-2 ">
-          {whyGloabalData.map((item) => (
+          {whyGlobalData.map((item) => (
             <Card
               key={item.id}
               className="p-2 cursor-pointer mb-4 lg:p-4 bg-transparent shadow-none border-none hover:border hover:shadow-sm hover:bg-card"
             >
               <div className="icon-box bg-indigo-500 cursor-pointer text-white shadow-white">
-                <item.icon fontSize={30} />
+                <item.icon
+                  fontSize={30}
+                  className="hover:rotate-90 transition-all duration-100 ease-in-out"
+                />
               </div>
               <h2 className="font-semibold capitalize my-2">{item.title}</h2>
               <span className="text-sm text-gray-600 font-medium">

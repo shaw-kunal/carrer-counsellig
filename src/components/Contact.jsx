@@ -1,24 +1,24 @@
 // components/ContactForm.js
-"use client";
-import React, { useState } from "react";
-import { Button } from "./ui/button";
-import { Label } from "@radix-ui/react-label";
-import { Textarea } from "./ui/textarea";
-import { Input } from "./ui/input";
-import MapChart from "./Map";
-import { toast } from "sonner";
+'use client';
+import React, { useState } from 'react';
+import { Button } from './ui/button';
+import { Label } from '@radix-ui/react-label';
+import { Textarea } from './ui/textarea';
+import { Input } from './ui/input';
+import MapChart from './Map';
+import { toast } from 'sonner';
 
 const ContactForm = () => {
   const [formValues, setFormValues] = useState({
-    name: "",
-    email: "",
-    message: "",
+    name: '',
+    email: '',
+    message: '',
   });
 
   const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    message: "",
+    name: '',
+    email: '',
+    message: '',
   });
 
   const handleChange = (e) => {
@@ -29,15 +29,15 @@ const ContactForm = () => {
     });
     setErrors({
       ...errors,
-      [name]: "",
+      [name]: '',
     });
   };
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formValues.name) newErrors.name = "Name is required";
-    if (!formValues.email) newErrors.email = "Email is required";
-    if (!formValues.message) newErrors.message = "Message is required";
+    if (!formValues.name) newErrors.name = 'Name is required';
+    if (!formValues.email) newErrors.email = 'Email is required';
+    if (!formValues.message) newErrors.message = 'Message is required';
     return newErrors;
   };
 
@@ -48,10 +48,10 @@ const ContactForm = () => {
       setErrors(formErrors);
     } else {
       // Handle form submission
-      toast.success("Thank For Contact Us! ");
+      toast.success('Thank For Contact Us! ');
 
       // Reset form
-      setFormValues({ name: "", email: "", message: "" });
+      setFormValues({ name: '', email: '', message: '' });
     }
   };
 

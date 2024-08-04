@@ -3,43 +3,42 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import Logo from './Logo';
+import { Button } from './ui/button';
+import ScheduleMeeting from './ScheduleMeeting';
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openSheet, setOpenSheet] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-
-
-
-  
-   const  linkList = [
+  const linkList = [
     {
-        title:"Home",
-        link:"/"
+      title: 'Home',
+      link: '/',
     },
     {
-        title:"About",
-        link:"#about"
+      title: 'About',
+      link: '#about',
     },
     {
-        title:"Services",
-        link:"#services"
+      title: 'Services',
+      link: '#services',
     },
-       {
-        title:"Contact",
-        link:"#contact"
+    {
+      title: 'Faq',
+      link: '#faq',
     },
-   ]
+  ];
   return (
-    <nav className='container px-2 md:px-4 pt-2'>
+    <nav className="container px-2 md:px-4 pt-2">
       <div className={`2xl:max-w-7xl mx-auto px-3 lg:py-3  pt-2`}>
         <div className="flex flex-wrap gap-2 items-center justify-between">
           <div className="flex-shrink-0 flex items-center   lg:mr-14">
-        <div>
-        <Logo/>
-        </div>
+            <div>
+              <Logo />
+            </div>
           </div>
           <button
             type="button"
@@ -49,7 +48,15 @@ const Navbar = () => {
             onClick={toggleMenu}
           >
             <span className="sr-only">Expand main menu</span>
-            <svg stroke="currentColor" fill="currentColor" strokeWidth="0" viewBox="0 0 24 24" height="27" width="27" xmlns="http://www.w3.org/2000/svg">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              strokeWidth="0"
+              viewBox="0 0 24 24"
+              height="27"
+              width="27"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"></path>
             </svg>
           </button>
@@ -59,21 +66,32 @@ const Navbar = () => {
             }`}
             id="navbar-default"
           >
-            {
-                linkList.map((item)=>(
-                    <li key={item.title}>
-              <Link href={item.link} className="block  outline-none no-underline hover:no-underline">
-                <div className="text-gray-800 font-medium  px-6 py-2 rounded-[40px] hover:text-white hover:bg-indigo-600 dark:text-gray-350 dark:hover:text-white focus:text-white text-sm lg:text-base transition-colors duration-300">
-                  {item.title}
-                </div>
-              </Link>
-            </li>
-           
-                ))
-            }
-            </ul>
+            {linkList.map((item) => (
+              <li key={item.title} className="mb-2">
+                <Link
+                  href={item.link}
+                  className="block outline-none no-underline hover:no-underline"
+                >
+                  <div className="text-gray-800 font-medium  px-6 py-2 rounded-[40px] hover:text-white hover:bg-primary dark:text-gray-350 dark:hover:text-white focus:text-white text-sm lg:text-base transition-colors duration-300">
+                    {item.title}
+                  </div>
+                </Link>
+              </li>
+            ))}
+            <Button
+              className=" w-full sm:w-fit ml-2 "
+              onClick={() => setOpenSheet(true)}
+            >
+              Contact US
+            </Button>
+          </ul>
         </div>
       </div>
+      <ScheduleMeeting
+        open={openSheet}
+        setClose={() => setOpenSheet(false)}
+        title={'Contact Us'}
+      />
     </nav>
   );
 };

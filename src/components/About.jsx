@@ -1,7 +1,7 @@
 // components/AboutUs.js
-
-import Image from "next/image";
-
+'use client';
+import Image from 'next/image';
+import { roboto } from '@/app/utils/font';
 const About = () => {
   return (
     <div className="relative" id="about">
@@ -13,7 +13,7 @@ const About = () => {
         data-nimg="1"
         objectFit="cover"
         className="absolute top-0 -z-10 "
-        style={{ color: "transparent" }}
+        style={{ color: 'transparent' }}
         src="/about-bg.svg"
       />
 
@@ -28,26 +28,35 @@ const About = () => {
                 fetchPriority="high"
                 fill
                 objectFit="cover"
-                src="/about_us.jpg" // Replace with your image path
+                src="/about_us.jpg"
                 alt="About Us"
                 className="w-full h-auto rounded-lg shadow-lg"
               />
               <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-slate-950 flex items-end justify-center rounded-lg">
                 <div className=" text-white text-[20px] text-center py-2">
-                  {" "}
+                  {' '}
                   Your Dream, Our Commitment
                 </div>
               </div>
             </div>
             <div className="p-3">
-              <p className="text-lg text-gray-700 mb-4 my-auto text-center">
-                <span className="font-bold text-2xl">Welcome</span> to our{" "}
-                <span className="font-bold">career counseling</span> website!
-                Our mission is to provide comprehensive guidance and support for
-                students looking to study abroad. We are dedicated to helping
-                students navigate the complex process of choosing the right
-                university, preparing applications, securing visas, and finding
-                scholarships.
+              <h2 className="text-center text-2xl lg:text-3xl font-bold mb-4 xl:mb-6">
+                Empowering Your Global Education Journey
+              </h2>
+              <p
+                className={` ${roboto} text-lg text-gray-700 mb-4 my-auto text-center`}
+              >
+                <span className="font-bold text-2xl">At HIGHRISE EDUV,</span> to
+                our{' '}
+                <span className="font-normal">
+                  {' '}
+                  we believe that every student deserves the best guidance for
+                  their educational aspirations. Our team of experienced
+                  counsellors is dedicated to helping you find the right path to
+                  your future. With our in-depth knowledge of universities
+                  worldwide and personalized counselling approach, we make your
+                  study abroad journey smooth and successful.
+                </span>
               </p>
             </div>
           </div>

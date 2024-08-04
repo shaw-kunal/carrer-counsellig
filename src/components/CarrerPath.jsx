@@ -4,39 +4,39 @@ import {
   FaGlobe,
   FaGraduationCap,
   FaLightbulb,
-} from "react-icons/fa";
-import { FaGoogleScholar } from "react-icons/fa6";
-import { MdOutlineCastForEducation } from "react-icons/md";
-import { Card, CardFooter } from "./ui/card";
+} from 'react-icons/fa';
+import { FaGoogleScholar } from 'react-icons/fa6';
+import { MdOutlineCastForEducation } from 'react-icons/md';
+import { Card, CardFooter } from './ui/card';
 
 const CareerPaths = [
   {
-    text: "Job Opportunity",
+    text: 'Job Opportunity',
     backIcon: FaGlobe,
     frontIcon: FaBriefcase,
   },
   {
-    text: "Career Guidance",
+    text: 'Career Guidance',
     backIcon: FaLightbulb,
     frontIcon: FaBriefcase,
   },
   {
-    text: "Educational Consulting",
+    text: 'Educational Consulting',
     backIcon: MdOutlineCastForEducation,
     frontIcon: FaBriefcase,
   },
   {
-    text: "Internship",
+    text: 'Internship',
     backIcon: FaGraduationCap,
     frontIcon: FaBriefcase,
   },
   {
-    text: "Scholarships",
+    text: 'Scholarships',
     backIcon: FaGoogleScholar,
     frontIcon: FaBriefcase,
   },
   {
-    text: "Success Rate",
+    text: 'Success Rate',
     backIcon: FaChalkboardTeacher,
     frontIcon: FaBriefcase,
   },
@@ -57,8 +57,8 @@ const CareerPath = () => {
             key={i}
             className={`group max-w-[350px] min-h-50  ${
               i === 4
-                ? "bg-slate-300 sm:bg-indigo-600 text-indigo-600 sm:text-white"
-                : "bg-slate-300 text-indigo-600 hover:bg-indigo-500 hover:text-white"
+                ? 'bg-slate-300 sm:bg-indigo-600 text-indigo-600 sm:text-white'
+                : 'bg-slate-300 text-indigo-600 hover:bg-indigo-500 hover:text-white'
             } rounded-xl p-4 flex items-center flex-col justify-center gap-10 lg:gap-14 cursor-pointer hover:shadow-lg hover:scale-110 transition-all ease-in-out duration-150`}
           >
             <div className="relative">
@@ -67,8 +67,8 @@ const CareerPath = () => {
                 <item.backIcon
                   className={`text-[40px] ${
                     i === 4
-                      ? "text-white sm:text-indigo-700"
-                      : "text-white group-hover:text-indigo-600"
+                      ? 'text-white sm:text-indigo-700'
+                      : 'text-white group-hover:text-indigo-600'
                   }`}
                 />
               </div>

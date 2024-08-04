@@ -5,17 +5,16 @@ import {
   FaLinkedin,
   FaInstagram,
   FaTiktok,
-} from "react-icons/fa";
-import Logo from "./Logo";
+} from 'react-icons/fa';
+import Logo from './Logo';
 
 const Footer = () => {
   return (
     <div className="container py-10">
       <div className="flex flex-col space-y-5 md:flex-row justify-between items-center">
         <div className="text-gray-700 dark:text-gray-100 text-center">
-          
-            <Logo />
-          
+          <Logo />
+
           <p className="text-sm font-semibold my-2">@All right reserver-2024</p>
         </div>
         <div className="flex flex-row space-x-5">
@@ -59,12 +58,8 @@ const Footer = () => {
           </a>
         </div>
         <div className="text-sm flex space-x-5">
-          <p className="no-underline" >
-            Terms of Use
-          </p>
-          <p className="no-underline">
-            Privacy Policy
-          </p>
+          <p className="no-underline">Terms of Use</p>
+          <p className="no-underline">Privacy Policy</p>
         </div>
       </div>
     </div>
